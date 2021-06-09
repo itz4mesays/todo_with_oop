@@ -1,0 +1,3 @@
+- App was connected to the todo database successfully on 2021-06-09 21:58:28
+- SQLSTATE[HY000] [1044] Access denied for user ''@'localhost' to database 'todo' on 2021-06-09 21:58:38
+- App was connected to the todo database successfully on 2021-06-09 21:58:46
