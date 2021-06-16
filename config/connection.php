@@ -1,6 +1,6 @@
 <?php
-require('config/db_config.php');
-require('config/utils.php');
+require 'config/db_config.php';
+require 'config/utils.php';
 
 $connection = new Database('todo', 'root', '127.0.0.1');
 try {
@@ -20,10 +20,12 @@ try {
         $msg = "connected to the $connection->dbName database successfully";
 
         $log = new Utils($msg, false);
-        echo $log->createLog();
+        $log->createLog();
+
+        // echo $msg;
     }
 } catch (PDOException $e) {
     $log = new Utils($e->getMessage(), true);
-    echo $log->createLog();
+    $log->createLog();
     die($e->getMessage());
 }
