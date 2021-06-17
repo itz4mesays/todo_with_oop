@@ -34,7 +34,11 @@ class User
     $this->password = $password;
   }
 
-  public function setEmai($email){
+  public function setUsername($username){
+    $this->username = $username;
+  }
+
+  public function setEmail($email){
     $this->email = $email;
   }
   
@@ -56,6 +60,48 @@ class User
 
   public function getResetToken(){
     return $this->reset_token;
+  }
+
+  public function confirmUsernameEmail(){
+    try {
+          //code...
+          $pdo = $this->conn;
+          $stmt = $pdo->prepare("SELECT id FROM user WHERE username= ? OR email=?");
+          $stmt->execute([$this->username, $this->email]);
+          $user = $stmt->fetchObject();
+
+          return $user;
+      } catch (\PDOException $e) {
+          //throw $th;
+          return false;
+      }
+  }
+
+  public function login()
+  {
+    try{
+        $pdo = $this->conn;
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE username= ?");
+          $stmt->execute([$this->username]);
+          $user = $stmt->fetchObject();
+
+          if($user){
+            if(password_verify($this->password, $user->password)){
+              $_SESSION['loggedIn'] = $user->id;
+              return true;
+            }else{
+              $_SESSION['errors'] = ['Incorrect Password'];
+            }
+          }else{
+            $_SESSION['errors'] = ['Such username does not exist'];      
+          }
+
+           return false;
+      
+    }catch(\PDOException $e){
+      $_SESSION['errors'] = ['Unable to log you in at the moment.'];
+      return false;
+    }
   }
 
 

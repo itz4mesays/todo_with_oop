@@ -60,7 +60,7 @@ class Todo
       try {
         //code...
         $data = [
-            'owner_id' => 1,
+            'owner_id' => $_SESSION['loggedIn'],
             'todo_title' => $this->todo_title,
             'todo_desc' => $this->todo_desc,
             'status' => $this->status,
@@ -90,10 +90,10 @@ class Todo
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
-        $user_id = 1;
+        $user_id = $_SESSION['loggedIn'];
 
         $pdo = $this->conn;
-        $sql = "UPDATE todo_list SET todo_title=:todo_title, todo_desc= :todo_desc, status= :status, updated_at= :updated_at WHERE id='".$this->id."' AND owner_id=1";
+        $sql = "UPDATE todo_list SET todo_title=:todo_title, todo_desc= :todo_desc, status= :status, updated_at= :updated_at WHERE id='".$this->id."' AND owner_id='".$user_id."'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($data);
 

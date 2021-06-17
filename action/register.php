@@ -27,12 +27,27 @@ if(isset($_POST)){
         array_push($errors, 'Username field is required');
     }
 
+    if(strlen($username) < 7){
+        array_push($errors, 'Username must not be less than 7 characters');
+    }
+
     if(empty($email)){
         array_push($errors, 'Email Address field is required');
     }
 
     if(empty($password)){
         array_push($errors, 'Password field is required');
+    }
+
+    if(!empty($username) || !empty($email)){
+        $user = new User();
+        $user->setEmail($email);
+        $user->setUsername($username);
+
+        if($user->confirmUsernameEmail()){
+            array_push($errors, 'Username or Email is already in use.');
+        }
+
     }
 
     if(!empty($errors)){
@@ -59,24 +74,12 @@ if(isset($_POST)){
     $member->setPassword($sanitizedPassword);
     
     if($member->createUser() == true){
-
-        if(isset($_SESSION)){
-            $arrayRem = ['errors'];
-            $utils->destroySession($_SESSION, $arrayRem);
-        }
-
-        $_SESSION['success_msg'] = 'You have successfully register. Please login';
+        $_SESSION['success_msg'] = true;
         header("Location: ../login.php");
         exit();
 
     }else{
-
-        if(isset($_SESSION)){
-            $arrayRem = ['success_msg'];
-            $utils->destroySession($_SESSION, $arrayRem);
-        }
-
-        $_SESSION['errors'] = 'Unable to create this todo at the moment.';
+        $_SESSION['errors'] = ['Unable to create this todo at the moment.'];
         header("Location: ../register.php");
         exit();
     }

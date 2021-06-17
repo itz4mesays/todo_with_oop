@@ -26,8 +26,8 @@ class Member extends User
         if(isset($this->id) && !empty($this->id)){
             $pdo = $this->conn;
             
-            $stmt = $pdo->prepare("SELECT * FROM todo_list WHERE id=? AND owner_id=1");
-            $stmt->execute([$this->id]);
+            $stmt = $pdo->prepare("SELECT * FROM todo_list WHERE id=? AND owner_id=?");
+            $stmt->execute([$this->id, $_SESSION['loggedIn']]);
             $singleTodo = $stmt->fetchObject();
 
             if($singleTodo == true){
@@ -50,7 +50,7 @@ class Member extends User
         try {
             //code...
             $pdo = $this->conn;
-            $id = 1;
+            $id = $_SESSION['loggedIn'];
             $stmt = $pdo->prepare("SELECT * FROM todo_list WHERE owner_id= ?");
             $stmt->execute([$id]);
             $allTodos = $stmt->fetchAll();
@@ -67,6 +67,8 @@ class Member extends User
    */
   public function createUser()
   {
+    //   $options = array("cost"=>4);
+
       try {
         //code...
         $data = [
@@ -75,7 +77,7 @@ class Member extends User
             'lastname' => $this->lastname,
             'email' => $this->email,
             'role' => $this->role,
-            'password' => password_hash($this->password, PASSWORD_BCRYPT),
+            'password' => password_hash(parent::getPassword(), PASSWORD_BCRYPT),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

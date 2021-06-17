@@ -1,8 +1,11 @@
+<?php
+;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Todo &middot; Login </title>
+    <title>Todo &middot; Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,9 +20,9 @@
 
       <?php include '_partials/_menulinks.php'; ?>
 
-		<div class="spa">
-			<?php require 'views/user/login.php' ;?>
-		</div>
+      <h2>Contact Us</h2>
+    
+        <p class="lead">Feel free to reach out to <a href="mailto:oyedele.phemy@gmail.com">Contact Me</a></p>
 
 	</div>
 

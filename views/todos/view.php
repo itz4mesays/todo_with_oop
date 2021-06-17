@@ -1,5 +1,4 @@
 <?php 
-session_start();
 
 require __DIR__.'/../../classes/member.php';
 $success_msg = isset($_SESSION['success_msg']) ? $_SESSION['success_msg'] : null;

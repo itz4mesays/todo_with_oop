@@ -1,11 +1,9 @@
 <?php
 
-// require 'config/connection.php';
-
 session_start();
 
-// unset($_SESSION['errors']);
-// unset($_SESSION['formData']);
+require __DIR__.'/isLoggedIn.php';
+
 ?>
 
 <!DOCTYPE html>

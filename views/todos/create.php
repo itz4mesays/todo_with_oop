@@ -2,13 +2,11 @@
 
 require __DIR__.'/../../config/utils.php';
 
-session_start(); 
-
 $utils = new Utils();
-$arrayRem = ['formData','success_msg'];
-if(isset($_SESSION)){
-  $utils->destroySession($_SESSION, $arrayRem);
-}
+// $arrayRem = ['formData','success_msg'];
+// if(isset($_SESSION)){
+//   $utils->destroySession($_SESSION, $arrayRem);
+// }
 
 $session = isset($_SESSION['errors']) ? $_SESSION['errors'] : null;
 $formData = isset($_SESSION['formData']) ? $_SESSION['formData'] : null;
