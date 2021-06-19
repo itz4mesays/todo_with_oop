@@ -91,7 +91,7 @@
     list-style: none;
 }
 
-input[type="text"], input[type="email"], input[type="password"],select{
+input[type="text"],input[type="date"], input[type="email"], input[type="password"],select{
       height: 47px !important;
 }
 

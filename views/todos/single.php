@@ -25,6 +25,10 @@ $singleTodo = $member->view();
                 <td><?php echo $singleTodo->todo_desc ?></td>
             </tr>
             <tr>
+                <th>Date of Task:</th>
+                <td><?php echo $singleTodo->date_of_task ?></td>
+            </tr>
+            <tr>
                 <th>Status:</th>
                 <td>
                     <?php if($singleTodo->status == 1): ?>

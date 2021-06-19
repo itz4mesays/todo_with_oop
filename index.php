@@ -2,7 +2,7 @@
 
 session_start();
 
-require __DIR__.'/isLoggedIn.php';
+// require __DIR__.'/isLoggedIn.php';
 
 ?>
 

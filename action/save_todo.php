@@ -43,6 +43,7 @@ if(isset($_POST)){
     $todo->todo_desc = $sanitizedDesc;
     $todo->todo_title = $sanitizedTitle;
     $todo->status = $sanitizedStatus;
+    $todo->date_of_task = date('Y-m-d', strtotime($_POST['todo_date']));
     
     if($todo->insertTodo() == true){
 

@@ -41,6 +41,11 @@ $formData = isset($_SESSION['formData']) ? $_SESSION['formData'] : null;
         </div>
 
         <div class="form-group">
+            <label for="todo_date">Date</label>
+            <input type="date" class="form-control" id="todo_date" name="todo_date" required>
+        </div>
+
+        <div class="form-group">
             <label for="todo_status">Status</label>
             <select name="todo_status" id="todo_status" class="form-control" required>
                 <option value="">Select One</option>
@@ -49,6 +54,7 @@ $formData = isset($_SESSION['formData']) ? $_SESSION['formData'] : null;
                 <?php endforeach ?>
             </select>
         </div>
+
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>

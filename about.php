@@ -1,6 +1,11 @@
 <?php
-;
+
+// require 'config/connection.php';
+
+session_start();
+require __DIR__.'/isLoggedIn.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

@@ -41,6 +41,11 @@ $session = isset($_SESSION['errors']) ? $_SESSION['errors'] : null;
             <textarea name="todo_desc" id="" cols="30" rows="10" class="form-control" id="todo_desc"><?php echo $singleTodo->todo_desc ?></textarea>
         </div>
 
+         <div class="form-group">
+            <label for="todo_date">Date</label>
+            <input type="date" class="form-control" id="todo_date" name="todo_date" required>
+        </div>
+
         <div class="form-group">
             <label for="todo_status">Status</label>
             <select name="todo_status" id="todo_status" class="form-control">

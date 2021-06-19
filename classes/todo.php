@@ -13,6 +13,7 @@ class Todo
   public $todo_desc;
   private $user_id;
   public $status;
+  public $date_of_task;
   public $created_at;
   public $updated_at;
 
@@ -29,6 +30,10 @@ class Todo
 
   public function setTodoDesc($description){
     $this->todo_desc = $description;
+  }
+
+  public function setTaskDate($date_of_task){
+    $this->date_of_task = $date_of_task;
   }
 
   public function setId($id){
@@ -51,6 +56,9 @@ class Todo
     return $this->todo_desc;
   }
 
+  public function getTaskDate(){
+    return $this->date_of_task;
+  }
 
   /**
    * Insert TODO
@@ -64,12 +72,13 @@ class Todo
             'todo_title' => $this->todo_title,
             'todo_desc' => $this->todo_desc,
             'status' => $this->status,
+            'date_of_task' => $this->date_of_task,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
         $pdo = $this->conn;
-        $sql = "INSERT INTO todo_list (owner_id, todo_title, todo_desc, status, created_at, updated_at) VALUES (:owner_id, :todo_title, :todo_desc, :status, :created_at, :updated_at)";
+        $sql = "INSERT INTO todo_list (owner_id, todo_title, todo_desc, status, date_of_task, created_at, updated_at) VALUES (:owner_id, :todo_title, :todo_desc, :status, :date_of_task,  :created_at, :updated_at)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($data);
 
@@ -87,13 +96,14 @@ class Todo
             'todo_title' => $this->todo_title,
             'todo_desc' => $this->todo_desc,
             'status' => $this->status,
+            'date_of_task' => date('Y-m-d', strtotime($_POST['date_of_task'])),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
         $user_id = $_SESSION['loggedIn'];
 
         $pdo = $this->conn;
-        $sql = "UPDATE todo_list SET todo_title=:todo_title, todo_desc= :todo_desc, status= :status, updated_at= :updated_at WHERE id='".$this->id."' AND owner_id='".$user_id."'";
+        $sql = "UPDATE todo_list SET todo_title=:todo_title, todo_desc= :todo_desc, status= :status, date_of_task= :date_of_task, updated_at= :updated_at WHERE id='".$this->id."' AND owner_id='".$user_id."'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($data);
 
